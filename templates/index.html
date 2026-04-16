@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yogesh Weather App</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        /* 🔥 BIG CLEAR TITLE */
+        h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        /* 🔥 NAME HIGHLIGHT (NO FADE) */
+        .brand {
+            font-size: 28px;
+            font-weight: 800;
+            color: #00f7ff;
+            margin-bottom: 30px;
+        }
+
+        .brand span {
+            color: #ffcc00;
+        }
+
+        input {
+            padding: 12px;
+            width: 230px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* 🔥 CARD */
+        .card {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .temp {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .small {
+            opacity: 0.9;
+        }
+
+        /* 🔥 IMAGE */
+        .weather-img {
+            width: 80px;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌦 Weather App</h1>
+
+    <!-- 🔥 STRONG NAME -->
+    <div class="brand">
+        🚀 WELCOME TO <span>YOGESH WEATHER APP</span> 🔥
+    </div>
+
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city">
+        <button type="submit">Search 🔍</button>
+    </form>
+
+    {% if weather %}
+    <div class="card">
+        {% if weather.error %}
+            <p>{{ weather.error }}</p>
+        {% else %}
+            <h2>{{ weather.city }}</h2>
+
+            <!-- 🌤 IMAGE -->
+            <img class="weather-img" src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png">
+
+            <p class="small">{{ weather.weather }}</p>
+
+            <p class="temp">🌡 {{ weather.temp }}°C</p>
+
+            <p class="small">🤒 Feels like: {{ weather.feels }}°C</p>
+            <p class="small">💧 Humidity: {{ weather.humidity }}%</p>
+            <p class="small">🌬 Wind: {{ weather.wind }} m/s</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
